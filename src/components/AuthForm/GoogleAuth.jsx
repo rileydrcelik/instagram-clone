@@ -13,8 +13,16 @@ const GoogleAuth = ({prefix}) => {
   const handleGoogleAuth = async () => {
     try{
       const newUser = await signInWithGoogle()
-      if(!newUser && error){
-        showToast("Error", error.message, "error")
+      if(!newUser){
+        if(error){
+          showToast("Error", error.message, "error")
+        } else {
+          showToast("Error", "Google sign-in was cancelled or failed", "error")
+        }
+        return
+      }
+      if(!newUser.user){
+        showToast("Error", "Failed to get user information from Google", "error")
         return
       }
       const userRef = doc(firestore, "users", newUser.user.uid);

@@ -25,7 +25,11 @@ const PostFooter = ({username, isProfilePage, likesCount, isLiked, handleLike, i
             fontSize={18}>
                 {!isLiked ? (<NotificationsLogo />) : (<UnlikeLogo />)}
             </Box>
-            <Box cursor={"pointer"} fontSize={18}>
+            <Box 
+                cursor={"pointer"} 
+                fontSize={18}
+                onClick={onViewComments}
+            >
                 <CommentLogo />
             </Box>
         </Flex>
